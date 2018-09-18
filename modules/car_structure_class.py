@@ -11,6 +11,7 @@ class Car():
 		return str(self.__class__) + ": " + str(self.__dict__)
 
     # @property makes color to work as a getter,helps in Creating functions for managing the getting, setting and deleting of an attribute.
+	# getter, setter helps to ensure the principle of data encapsulation.
 	@property          
 	def color(self):
 		return self._color
