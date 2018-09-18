@@ -25,7 +25,7 @@ class parking_lot():
 	def available(self,value):
 		self._available = value
 
-    @property									# getter for car
+	@property									# getter for car
 	def car(self):
 		return self._car
 

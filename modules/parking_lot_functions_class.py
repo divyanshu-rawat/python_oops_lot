@@ -22,8 +22,8 @@ class Parking_lot():
 				obj = parking_lot_structure_class.parking(slot_number = x, available = true )
 				self.parking_slot[x] = obj
 
-		    print "Created a parking lot with %s slots" % no_of_slots
-        else:
-            print "Invalid slots value provided"
-        return
+			print "Created a parking lot with %s slots" % no_of_slots
+		else:
+			print "Invalid slots value provided"
+		return
 
