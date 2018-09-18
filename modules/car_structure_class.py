@@ -15,18 +15,18 @@ class Car():
 	def color(self):
 		return self._color
 
-	@color.setter                # setter for color.
+	@color.setter                			# setter for color.
 	def color(self,value):
-		return self._color = value
+		self._color = value
 
    
-	@property					 # getter for registration_number 
+	@property					 			# getter for registration_number 
 	def registration_number(self):
 		return self._registration_number
 
-	@registration_number.setter  # setter for registration_number
+	@registration_number.setter  			# setter for registration_number
 	def registration_number(self,value):
-		return self._registration_number = value
+		self._registration_number = value
 
 
 
