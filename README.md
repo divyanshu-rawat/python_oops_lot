@@ -15,3 +15,5 @@ To run the program and launch the terminal:
 $ python parking_lot_commands.py sample_inputs.txt
 
 
+
+![Alt Text](https://github.com/divyanshu-rawat/python_oops_lot/blob/master/Assets/parking_lot.gif)
