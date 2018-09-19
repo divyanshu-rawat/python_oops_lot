@@ -29,6 +29,13 @@ class Car():
 	def registration_number(self,value):
 		self._registration_number = value
 
+	@classmethod
+	def create_car_object(cls,registration_number, color):
+		car_object = cls()
+		car_object.registration_number = registration_number
+		car_object.color = color
+		return car_object
+
 
 
 
