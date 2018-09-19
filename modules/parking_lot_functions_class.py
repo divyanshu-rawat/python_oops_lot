@@ -61,6 +61,8 @@ class Parking_lot():
 
 	def leave(self, slot_number):
 		print 'leave'
+		print self.parking_slots[slot_number].slot_number
+
 
 	def status(self):
 		print 'status'
