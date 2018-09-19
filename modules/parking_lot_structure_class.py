@@ -1,11 +1,14 @@
 
 
-class parking_lot():
+class parking_lot(object):
 
 	def __init__(self, slot_number = None, available = None):
 		self._slot_number = slot_number
 		self._car = None
 		self._available = available
+
+	def __str__(self):
+		return str(self.__class__) + ": " + str(self.__dict__)
 
 	# @property makes color to work as a getter,helps in Creating functions for managing the getting, setting and deleting of an attribute.
 	# getter, setter helps to ensure the principle of data encapsulation.

@@ -9,6 +9,9 @@ class Parking_lot():
 	def __init__(self):
 		self.parking_slots = {}
 
+	def __str__(self):
+		return str(self.__class__) + ": " + str(self.__dict__)
+
 
 	def create_parking_lot(self,no_of_slots):
 
@@ -16,6 +19,7 @@ class Parking_lot():
 
 		if(len(self.parking_slots)) > 0:
 			print 'Parking lot already created :)'
+			return
 
 		if no_of_slots > 0:
 			for x in range(1, no_of_slots + 1):
@@ -48,6 +52,7 @@ class Parking_lot():
 		nearest_slot = self.get_nearest_available_slot()
 
 		if nearest_slot:
+			#@classmethod in car class is returning an object.
 			nearest_slot.car  = car_structure_class.Car.create_car_object(registration_no,color)
 			nearest_slot.available = False
 			print 'Car parked at %s slot' % (nearest_slot.slot_number)
@@ -61,20 +66,59 @@ class Parking_lot():
 
 	def leave(self, slot_number):
 		print 'leave'
-		print self.parking_slots[slot_number].slot_number
+		lot_object = self.parking_slots[int(slot_number)]
+		# print lot_object.car.color
+
+		if not lot_object.available and lot_object.car:
+			lot_object.available = True
+			lot_object.car = None
 
 
 	def status(self):
-		print 'status'
 
-	def registration_numbers_for_cars_with_colour(self, colour):
-		print 'registration_numbers_for_cars_with_colour'
+		# shows current status of parking
 
-	def slot_numbers_for_cars_with_colour(self, colour):
-		print 'slot_numbers_for_cars_with_colour'
+		if self.status_check():
+			return
+
+		print "Slot No\tRegistration No\tColour"
+		
+		for x in self.parking_slots.values(): 					# returns structure similar to this {'_available': False, '_slot_no': 1, '_car': {'_reg_no': 'KA-01-HH-2701', '_colour': 'Blue'}}
+			if not x.available and x.car:
+				print "%s\t%s\t%s" % (x.slot_no, x.car.reg_no, x.car.colour)
+
+	def registration_numbers_for_cars_with_colour(self, color):
+
+		# print color
+		reg_nos = ''
+
+		for lot in self.parking_slots.values():
+			if not lot.available and lot.car:
+				if lot.car.color == color:
+					print lot.car.color
+
+
+
+	
+
+	def slot_numbers_for_cars_with_colour(self, color):
+		
+		for x in self.parking_slots.values():
+			if not x.available and x.car:
+				if x.car.color == color:
+					print x.slot_number
 
 	def slot_number_for_registration_number(self, reg_no):
 		print 'slot_number_for_registration_number'
+
+
+
+	def status_check(self):
+		if(len(self.parking_slots) == 0):
+			print 'parking lot not created'
+			return True
+		return False
+
 
 
 
