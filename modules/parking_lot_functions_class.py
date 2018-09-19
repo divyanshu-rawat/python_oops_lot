@@ -57,7 +57,7 @@ class Parking_lot():
 			#@classmethod in car class is returning an object.
 			nearest_slot.car  = car_structure_class.Car.create_car_object(registration_no,color)
 			nearest_slot.available = False
-			print 'Car parked at %s slot' % (nearest_slot.slot_number)
+			print "Allocated slot number: %s" % (nearest_slot.slot_number)
 		else:
 			print "Sorry, parking lot is full."
 
@@ -84,7 +84,7 @@ class Parking_lot():
 			else:
 				print "No car is present at slot number %s" % slot_number
 		else:
-			print "Incorrect Slot Number"
+			print "Sorry, parking lot is full."
 
 
 
@@ -93,7 +93,7 @@ class Parking_lot():
 		if self.status_check():
 			return
 
-		print "Slot No\tRegistration No\tColour"
+		print "Slot No.\tRegistration No.\tColour."
 		for x in self.parking_slots.values(): 					# returns structure similar to this {'_available': False, '_slot_no': 1, '_car': {'_reg_no': 'KA-01-HH-2701', '_colour': 'Blue'}}
 			if not x.available and x.car:
 				print "%s\t%s\t%s" % (x.slot_number, x.car.registration_number, x.car.color)
@@ -133,7 +133,7 @@ class Parking_lot():
 					slot_number += '%s ' % x.slot_number
 
 		if slot_number:
-			print slot_number
+			print slot_number 
 		else:
 			print "Not found"
 
