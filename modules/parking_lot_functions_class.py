@@ -93,7 +93,7 @@ class Parking_lot():
 		if self.status_check():
 			return
 
-		print "Slot No.\tRegistration No.\tColour."
+		print "Slot No.\tReg. No.\tColour."
 		for x in self.parking_slots.values(): 					# returns structure similar to this {'_available': False, '_slot_no': 1, '_car': {'_reg_no': 'KA-01-HH-2701', '_colour': 'Blue'}}
 			if not x.available and x.car:
 				print "%s\t%s\t%s" % (x.slot_number, x.car.registration_number, x.car.color)
