@@ -4,7 +4,7 @@ import car_structure_class, parking_lot_structure_class
 
 class Parking_lot():
 
-	''' parking lot operations and functions are defined in this class '''
+	""" parking lot operations and functions are defined in this class """
 
 	def __init__(self):
 		self.parking_slots = {}
@@ -77,7 +77,7 @@ class Parking_lot():
 
 		if int(slot_number) in self.parking_slots:
 			lot_object = self.parking_slots[int(slot_number)]
-			if not lot_object.available and lot_object.car:
+			if not lot_object.available and lot_object.car:      # checking wether slot is availabel is true/false and car object is empty or not.
 				lot_object.available = True
 				lot_object.car = None
 				print "Slot number %s is free" % slot_number
