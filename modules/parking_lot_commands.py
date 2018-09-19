@@ -9,7 +9,7 @@ class Parking_commands():
 		self.parking_lot_functions_class = parking_lot_functions_class.Parking_lot()
 
 	def input_file_processing(self,entered_file):
-		print entered_file
+
 		read_file_obj = open(entered_file)  					#Open a file, return an object of the file.
 		try:
 			while True:
@@ -41,7 +41,7 @@ class Parking_commands():
 		user_inputs = standard_input.split()                    				#Returns list of commands
 		command = user_inputs[0]			   									#['park', '1-2-3', 'blue'] 
 		arguments = user_inputs[1:]
-		print command,arguments
+
 		if hasattr(self.parking_lot_functions_class, command):
 			get_function = getattr(self.parking_lot_functions_class, command) 	#returns the function defined parking_lot_functions_class class, whose name is same as command entered by user .
 			get_function(*arguments)											# as we do not know before hand that how many arguments can be passed to our function, for instance creating a lot requires 1 argument, where as park requires 2.

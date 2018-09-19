@@ -39,15 +39,17 @@ class Parking_lot():
 
 													   										#lambda functions are passed as parameters to a function which expects a function objects as parameter like map, reduce, filter functions.
 		available_slots = filter(lambda x: x.available ,self.parking_slots.values())        #filter function also returns a list of element,here self.parking_slots.values() returns list of dictionaries
-		print len(available_slots)
 		if not available_slots:
 			return None
 
-		return sorted(available_slots, key = lambda x: x.slot_number)[0]			#sorted(iterable, key, reverse)
+		return sorted(available_slots, key = lambda x: x.slot_number)[0]					#sorted(iterable, key, reverse)
 
 	def park(self, registration_no, color):
 		
 		""" Method to park car in nearest parking slot. """
+
+		if self.status_check():
+			return
 
 		nearest_slot = self.get_nearest_available_slot()
 
@@ -65,52 +67,92 @@ class Parking_lot():
 
 
 	def leave(self, slot_number):
-		print 'leave'
-		lot_object = self.parking_slots[int(slot_number)]
-		# print lot_object.car.color
-
-		if not lot_object.available and lot_object.car:
-			lot_object.available = True
-			lot_object.car = None
-
-
-	def status(self):
-
-		# shows current status of parking
+		
+		# Method to empty a parking slot.
 
 		if self.status_check():
 			return
 
+		# print lot_object.car.color
+
+		if int(slot_number) in self.parking_slots:
+			lot_object = self.parking_slots[int(slot_number)]
+			if not lot_object.available and lot_object.car:
+				lot_object.available = True
+				lot_object.car = None
+				print "Slot number %s is free" % slot_number
+			else:
+				print "No car is present at slot number %s" % slot_number
+		else:
+			print "Incorrect Slot Number"
+
+
+
+	def status(self):
+		# shows current status of parking
+		if self.status_check():
+			return
+
 		print "Slot No\tRegistration No\tColour"
-		
 		for x in self.parking_slots.values(): 					# returns structure similar to this {'_available': False, '_slot_no': 1, '_car': {'_reg_no': 'KA-01-HH-2701', '_colour': 'Blue'}}
 			if not x.available and x.car:
-				print "%s\t%s\t%s" % (x.slot_no, x.car.reg_no, x.car.colour)
+				print "%s\t%s\t%s" % (x.slot_number, x.car.registration_number, x.car.color)
 
 	def registration_numbers_for_cars_with_colour(self, color):
+		# Method to find registration numbers of car with given colour in parking lot.
 
-		# print color
-		reg_nos = ''
+		if self.status_check():
+			return
 
-		for lot in self.parking_slots.values():
-			if not lot.available and lot.car:
-				if lot.car.color == color:
-					print lot.car.color
+		registration_number = ''
 
-
-
-	
-
-	def slot_numbers_for_cars_with_colour(self, color):
-		
 		for x in self.parking_slots.values():
 			if not x.available and x.car:
 				if x.car.color == color:
-					print x.slot_number
+					registration_number += '%s ' % x.car.registration_number
 
-	def slot_number_for_registration_number(self, reg_no):
-		print 'slot_number_for_registration_number'
 
+		if registration_number:
+			print registration_number
+		else:
+			print "Not found"
+
+
+	def slot_numbers_for_cars_with_colour(self, color):
+
+		#Method to find slot numbers for cars with given colour in parking lot.
+
+		if self.status_check():
+			return
+		
+		slot_number = ''
+
+		for x in self.parking_slots.values():
+			if not x.available and x.car:
+				if x.car.color == color:
+					slot_number += '%s ' % x.slot_number
+
+		if slot_number:
+			print slot_number
+		else:
+			print "Not found"
+
+	def slot_number_for_registration_number(self, registration_number):
+		
+		if self.status_check():
+			return
+		
+		slot_number = ''
+
+		for x in self.parking_slots.values():
+			if not x.available and x.car:
+				if x.car.registration_number == registration_number:
+					slot_number += '%s ' % x.slot_number
+
+		if slot_number:
+			print slot_number
+		else:
+			print "Not found"
 
 
 	def status_check(self):
